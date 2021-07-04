@@ -7,5 +7,7 @@ var s = document.createElement('script');
 s.setAttribute('src','https://wave.church/brushfire/script.js');
 document.body.appendChild(s);
 var c = document.createElement('style');
-c.setAttribute('src','https://wave.church/brushfire/script.js');
+c.setAttribute('rel','stylesheet');
+c.setAttribute('rel','stylesheet');
+c.setAttribute('href','https://wave.church/brushfire/style.css');
 document.body.appendChild(c);
