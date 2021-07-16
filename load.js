@@ -4,10 +4,10 @@ j.setAttribute('integrity','sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='
 j.setAttribute('crossorigin','anonymous');
 document.body.appendChild(j);
 var s = document.createElement('script');
-s.setAttribute('src','https://wave.church/brushfire/script.js');
+s.setAttribute('src','https://raw.githubusercontent.com/JTylerH/brushfire/main/script.js');
 document.body.appendChild(s);
 var c = document.createElement('style');
 c.setAttribute('rel','stylesheet');
 c.setAttribute('rel','stylesheet');
-c.setAttribute('href','https://wave.church/brushfire/style.css');
+c.setAttribute('href','https://raw.githubusercontent.com/JTylerH/brushfire/main/style.css');
 document.body.appendChild(c);
