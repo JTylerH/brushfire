@@ -6,7 +6,7 @@ document.body.appendChild(j);
 var s = document.createElement('script');
 s.setAttribute('src','https://cdn.jsdelivr.net/gh/JTylerH/brushfire/script.js');
 document.body.appendChild(s);
-var c = document.createElement('style');
+var c = document.createElement('link');
 c.setAttribute('rel','stylesheet');
 c.setAttribute('rel','stylesheet');
 c.setAttribute('href','https://cdn.jsdelivr.net/gh/JTylerH/brushfire/style.css');
