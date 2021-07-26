@@ -63,12 +63,22 @@ $(document).ready(function() {
                 $('#WAVEPOLL').show();
                 $('#TOGGLEWAVEPOLL').addClass('kpoarI').removeClass('hKSAsZ');
                 onPollPane = true;
+                //make the poll toggle work with the info toggle too
+                if($('#toggle-info').hasClass('kpoarI')){
+                    $('#toggle-info').removeClass('kpoarI').attr('color','#ffffff').addClass('hKSAsZ');
+                }
             }else{
                 $(this).addClass('kpoarI').attr('color','#ffffff').removeClass('hKSAsZ');
                 $('#WAVEPOLL').hide();
                 $('#TOGGLEWAVEPOLL').addClass('hKSAsZ').removeClass('kpoarI has-activity');
                 onPollPane = false;
             }
+        });
+        //make the poll toggle work with the info toggle too
+        $('#toggle-info').on('click',function(){
+            $('#WAVEPOLL').hide();
+            $('#TOGGLEWAVEPOLL').addClass('hKSAsZ').removeClass('kpoarI has-activity');
+            onPollPane = false;
         });
     }
     
