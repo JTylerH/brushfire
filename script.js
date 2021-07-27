@@ -4,8 +4,11 @@ $(document).ready(function() {
     
     $('.sc-gFSPHw.gqvlNk.video-panel').attr('id','WAVEID');
     
+    //removed because of issues
+    $('#toggle-video-panel').remove();
+    
     //add our custom toggle button
-    $('#toggle-chat').after('<div id="TOGGLEWAVEPOLL" class="sc-clIAKW hKSAsZ panel-button" color="#ffffff"><i class="fal fa-comment-alt-exclamation" aria-hidden="true" style="font-size: 28px;"></i></div>');
+    $('#toggle-chat').after('<div id="TOGGLEWAVEPOLL" class="sc-clIAKW hKSAsZ panel-button" color="#ffffff" style="display:block;text-align:center;"><i style="display:block;margin-top:6px;" class="fas fa-poll" aria-hidden="true" style="font-size: 28px;"></i><small style="display:block;line-height:.9em;font-weight:900;">QA & Polls</small></div>');
     //position the iframe inside the pane and give it a z-index of at least 2 and not more than 10 to hide other panels
     $('#WAVEID>.video-panel-content').prepend('<div id="WAVEPOLL" style="position:absolute;top:0;left:0;bottom:0;right:0;overflow:hidden;display:none;z-index:2;"><iframe id="slido" frameBorder="0" style="width:100%;height:calc(100% + 51px);margin-top:-50px;" src="https://app.sli.do/event/wmmorx08"></iframe></div>');
     //add it to mobile menu too
@@ -16,7 +19,7 @@ $(document).ready(function() {
         var win = $(this); //this = window
         if(!$('#TOGGLEWAVEPOLL').length){
             if (win.width() >= 993) {
-                $('#toggle-chat').after('<div id="TOGGLEWAVEPOLL" class="sc-clIAKW hKSAsZ panel-button" color="#ffffff"><i class="fal fa-comment-alt-exclamation" aria-hidden="true" style="font-size: 28px;"></i></div>');
+                $('#toggle-chat').after('<div id="TOGGLEWAVEPOLL" class="sc-clIAKW hKSAsZ panel-button" color="#ffffff"><i class="fal fa-poll" aria-hidden="true" style="font-size: 28px;"></i></div>');
                 customToggleBind();
                 $('#toggle-interactions').remove();
                 if(!onPollPane){
@@ -67,6 +70,12 @@ $(document).ready(function() {
                 if($('#toggle-info').hasClass('kpoarI')){
                     $('#toggle-info').removeClass('kpoarI').attr('color','#ffffff').addClass('hKSAsZ');
                 }
+                $('#toggle-interactions').on('click',function(){
+                    if(onPollPane){
+                        $('#toggle-bible').trigger('click');
+                        $('#toggle-interactions').trigger('click');
+                    }
+                });
             }else{
                 $(this).addClass('kpoarI').attr('color','#ffffff').removeClass('hKSAsZ');
                 $('#WAVEPOLL').hide();
@@ -106,26 +115,29 @@ $(document).ready(function() {
     	mutations_list.forEach(function(mutation) {
     		mutation.addedNodes.forEach(function(node) {
 		        if(node.id == 'interactions-container') {
-		            onPollPane = true;
-    				console.log('#interactions-container has been added');
-    				//trigger another toggle before deleting toggle and pane to avoid black screens
-    				$('#toggle-chat').trigger('click');
-    				// do it for mobile too
-    				$('#WAVEID>.sc-hlGCtx.FjAuF>div>div>div:nth-child(2)').trigger('click');
-    				//open the our custom pane by triggering a click on the custom tab
-    				$('#TOGGLEWAVEPOLL').trigger('click');
-    		        //do it for mobile too
-    				$('#TOGGLEWAVEPOLLMOBILE').trigger('click');
-    				//mobile trigger opens the menu, lets close it
-    				$('.mobile-panel-bar .sc-clIAKW.ivocmh.sc-kTqMCK.cByDxl').trigger('click');
-    				//delete the interaction toggle and pane whenever it appears
-    				$('#toggle-interactions').remove();
-    				$('#interactions-container').remove();
-    				// delete it for mobile
-    				$('#WAVEID>.sc-hlGCtx.FjAuF>div>div>div:last-child').remove();
-    				//give the toggle has-activity class
-    				$('#TOGGLEWAVEPOLL').addClass('has-activity');
-    				$('#TOGGLEWAVEPOLLMOBILE>span').addClass('has-activity');
+		      //      onPollPane = true;
+    				// console.log('#interactions-container has been added');
+    				// //trigger another toggle before deleting toggle and pane to avoid black screens
+    				// $('#toggle-chat').trigger('click');
+    				// // do it for mobile too
+    				// $('#WAVEID>.sc-hlGCtx.FjAuF>div>div>div:nth-child(2)').trigger('click');
+    				// //open the our custom pane by triggering a click on the custom tab
+    				// $('#TOGGLEWAVEPOLL').trigger('click');
+    		  //      //do it for mobile too
+    				// $('#TOGGLEWAVEPOLLMOBILE').trigger('click');
+    				// //mobile trigger opens the menu, lets close it
+    				// $('.mobile-panel-bar .sc-clIAKW.ivocmh.sc-kTqMCK.cByDxl').trigger('click');
+    				// //delete the interaction toggle and pane whenever it appears
+    				// $('#toggle-interactions').remove();
+    				// $('#interactions-container').remove();
+    				// // delete it for mobile
+    				// $('#WAVEID>.sc-hlGCtx.FjAuF>div>div>div:last-child').remove();
+    				// //give the toggle has-activity class
+    				// $('#TOGGLEWAVEPOLL').addClass('has-activity');
+    				// $('#TOGGLEWAVEPOLLMOBILE>span').addClass('has-activity');
+    				$('#WAVEPOLL').hide();
+                    $('#TOGGLEWAVEPOLL').addClass('hKSAsZ').removeClass('kpoarI has-activity');
+                    onPollPane = false;
     			}
     		});
     	});
@@ -134,17 +146,17 @@ $(document).ready(function() {
     
     
     //navigation open poll
-    $('.nav-container .menu').append('<a id="TOPNAVOPENPOLL" class="sc-fmWevp jMeVdN"><i class="fas fa-comment-alt-exclamation" aria-hidden="true" style="margin-right: 5px;"></i><span>Open Live Poll</span></a>');
+    $('.nav-container .menu').append('<a id="TOPNAVOPENPOLL" class="sc-fmWevp jMeVdN"><i class="fas fa-poll" aria-hidden="true" style="margin-right: 5px;"></i><span>Open Live Poll</span></a>');
     $('#TOPNAVOPENPOLL').on('click', function(){
         $('#TOGGLEWAVEPOLL').trigger('click');
     });
     
-    $('.nav-container .drawer-menu').append('<a id="DRAWERNAVOPENPOLL" class="sc-jdhxzS pOouR"><h2><i class="fas fa-comment-alt-exclamation" aria-hidden="true" style="margin-right: 5px;"></i> Open Live Poll</h2></a>');
+    $('.nav-container .drawer-menu').append('<a id="DRAWERNAVOPENPOLL" class="sc-jdhxzS pOouR"><h2><i class="fas fa-poll" aria-hidden="true" style="margin-right: 5px;"></i> Open Live Poll</h2></a>');
     $('#DRAWERNAVOPENPOLL').on('click', function(){
         $('#TOGGLEWAVEPOLL').trigger('click');
     });
     //below video open poll
-    $('.video-links-desktop').prepend('<a id="VIDEOOPENPOLL" class="sc-eBTqMF ijVDwC"><i class="fas fa-comment-alt-exclamation link-icon" aria-hidden="true" style="margin-right: 5px;"></i><p class="" style="margin-top: 0px; margin-bottom: 0px;">Q&amp;A AND POLLS</p></a>');
+    $('.video-links-desktop').prepend('<a id="VIDEOOPENPOLL" class="sc-eBTqMF ijVDwC"><i class="fas fa-poll link-icon" aria-hidden="true" style="margin-right: 5px;"></i><p class="" style="margin-top: 0px; margin-bottom: 0px;">Q&amp;A AND POLLS</p></a>');
     $('#VIDEOOPENPOLL').on('click', function(){
         $('#TOGGLEWAVEPOLL').trigger('click');
     });
@@ -152,5 +164,6 @@ $(document).ready(function() {
     //delete register (first-child) link for viewers
     $('.nav-container .menu>a:first-child').remove();
     $('.nav-container .drawer-menu>a:first-child').remove();
+    
     
 });
